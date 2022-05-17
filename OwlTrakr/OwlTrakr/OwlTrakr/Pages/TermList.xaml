@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:OwlTrakr"
+             xmlns:viewModels="clr-namespace:OwlTrakr.ViewModels"
+             x:Class="OwlTrakr.TermList">
+
+    <ContentPage.BindingContext>
+        <viewModels:TermListViewModel />
+    </ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label Text="{x:Static local:IconFont.School}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="White" FontSize="40" Margin="0, 0, 10, 0" />
+            <Label Text="OwlTrakr" HorizontalTextAlignment="Left" TextColor="White" FontSize="30"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#3740ed" Padding="14" CornerRadius="0">
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="End">
+                    <Label Text="Academic Terms" HorizontalTextAlignment="Left" TextColor="White" FontSize="20"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout VerticalOptions="StartAndExpand" Margin="10">
+                <Label x:Name="TermListEmptyLabel" Text="No terms" HorizontalOptions="Center" FontSize="Large" />
+                <ListView x:Name="TermListView" ItemsSource="{Binding Terms}" ItemSelected="Term_Selected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell ClassId="{Binding Id}" Text="{Binding Title}" Detail="{Binding DateRange}"
+                                      TextColor="{AppThemeBinding Dark=White, Light=DarkBlue}" DetailColor="{AppThemeBinding Dark=Silver, Light=FireBrick}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <ImageButton BackgroundColor="Transparent" Clicked="NewTerm_Clicked">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="MaterialIcons"
+                                        Glyph="{x:Static local:IconFont.Add}"
+                                        Color="{AppThemeBinding Dark=White, Light=Black}"
+                                        Size="30"
+                                    />
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="New Term" TextColor="Black" FontSize="16">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="NewTerm_Clicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

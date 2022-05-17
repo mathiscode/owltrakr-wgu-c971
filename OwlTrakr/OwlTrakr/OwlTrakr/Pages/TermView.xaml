@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:OwlTrakr"
+             xmlns:viewModels="clr-namespace:OwlTrakr.ViewModels"
+             x:Class="OwlTrakr.Pages.TermView">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label Text="{x:Static local:IconFont.School}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="White" FontSize="40" Margin="0, 0, 10, 0" />
+            <Label Text="OwlTrakr" HorizontalTextAlignment="Left" TextColor="White" FontSize="30"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#3740ed" Padding="14" CornerRadius="0">
+                <StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="End">
+                    <Label Text="{Binding Title}" HorizontalTextAlignment="Right" TextColor="White" FontSize="20"/>
+                    <Label Text="{Binding DateRange}" HorizontalTextAlignment="Right" TextColor="Silver" FontSize="15"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout VerticalOptions="StartAndExpand" Margin="10">
+                <Label Text="Term Name" />
+                <Entry x:Name="EditTerm_Title" Placeholder="Term Name" Text="{Binding Title}" />
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Label Text="Start Date" />
+                        <DatePicker x:Name="EditTerm_StartDate" Date="{Binding Start}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Label Text="End Date" />
+                        <DatePicker x:Name="EditTerm_EndDate" Date="{Binding End}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <Label Text="Courses" FontSize="Large" TextDecorations="Underline" />
+
+                <ListView ItemsSource="{Binding Courses}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell ClassId="{Binding Id}" Text="{Binding Title}" Detail="{Binding Status}"
+                                      TextColor="DarkBlue" DetailColor="Firebrick" Tapped="ViewCourse_Clicked" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <ImageButton BackgroundColor="Transparent" Clicked="AddCourse_Clicked">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="MaterialIcons"
+                                        Glyph="{x:Static local:IconFont.Add}"
+                                        Color="{AppThemeBinding Dark=White, Light=Black}"
+                                        Size="30"
+                                    />
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="Add Course" TextColor="Black" FontSize="16">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AddCourse_Clicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <ImageButton BackgroundColor="Transparent" Clicked="SaveTerm_Clicked">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="MaterialIcons"
+                                        Glyph="{x:Static local:IconFont.Check_circle}"
+                                        Color="{AppThemeBinding Dark=White, Light=Black}"
+                                        Size="30"
+                                    />
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="Save Term" TextColor="Black" FontSize="16">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SaveTerm_Clicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <ImageButton BackgroundColor="Transparent" Clicked="DeleteTerm_Clicked">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="MaterialIcons"
+                                        Glyph="{x:Static local:IconFont.Delete}"
+                                        Color="{AppThemeBinding Dark=White, Light=Black}"
+                                        Size="30"
+                                    />
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="Delete Term" TextColor="Black" FontSize="16">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="DeleteTerm_Clicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

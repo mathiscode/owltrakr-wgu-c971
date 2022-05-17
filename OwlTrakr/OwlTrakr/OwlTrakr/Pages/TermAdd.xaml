@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:OwlTrakr"
+             x:Class="OwlTrakr.Pages.TermAdd">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label Text="{x:Static local:IconFont.School}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="White" FontSize="40" Margin="0, 0, 10, 0" />
+            <Label Text="OwlTrakr" HorizontalTextAlignment="Left" TextColor="White" FontSize="30"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#3740ed" Padding="14" CornerRadius="0">
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="End">
+                    <Label Text="Add New Term" HorizontalTextAlignment="Left" TextColor="White" FontSize="20"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout VerticalOptions="StartAndExpand" Margin="10">
+                <Label Text="Term Name" />
+                <Entry x:Name="NewTerm_Title" Placeholder="Term Name" />
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Label Text="Start Date" />
+                        <DatePicker x:Name="NewTerm_StartDate" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Label Text="End Date" />
+                        <DatePicker x:Name="NewTerm_EndDate" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <ImageButton BackgroundColor="Transparent" Clicked="SaveTerm_Clicked">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="MaterialIcons"
+                                        Glyph="{x:Static local:IconFont.Check_circle}"
+                                        Color="{AppThemeBinding Dark=White, Light=Black}"
+                                        Size="30"
+                                    />
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="Save" TextColor="Black" FontSize="16">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SaveTerm_Clicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
