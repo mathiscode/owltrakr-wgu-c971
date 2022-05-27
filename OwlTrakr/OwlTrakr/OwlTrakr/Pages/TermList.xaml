@@ -25,7 +25,7 @@
             </Frame>
 
             <StackLayout VerticalOptions="StartAndExpand" Margin="10">
-                <Label x:Name="TermListEmptyLabel" Text="No terms" HorizontalOptions="Center" FontSize="Large" />
+                <!--<Label x:Name="TermListEmptyLabel" Text="No terms" HorizontalOptions="Center" FontSize="Large" />-->
                 <ListView x:Name="TermListView" ItemsSource="{Binding Terms}" ItemSelected="Term_Selected">
                     <ListView.ItemTemplate>
                         <DataTemplate>

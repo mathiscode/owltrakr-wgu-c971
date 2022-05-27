@@ -7,16 +7,19 @@ namespace OwlTrakr.ViewModels
 {
     class TermListViewModel : BaseViewModel
     {
-        ObservableCollection<Term> _terms = Data.Terms;
+        public static TermListViewModel instance;
+        ObservableCollection<Term> _terms = null;
 
         public TermListViewModel()
         {
-            Fetch();
+            instance = this;
+            if (_terms === null) Terms = 
         }
 
         async public void Fetch()
         {
             Terms = await Data.FetchTerms();
+            OnPropertyChanged();
         }
 
         public ObservableCollection<Term> Terms
@@ -26,7 +29,7 @@ namespace OwlTrakr.ViewModels
             {
                 SetValue(ref _terms, value);
                 OnPropertyChanged();
-                Fetch();
+                //Fetch();
             }
         }
     }

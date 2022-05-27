@@ -20,48 +20,84 @@
                 </StackLayout>
             </Frame>
 
-            <StackLayout VerticalOptions="StartAndExpand" Margin="10">
-                <Label Text="Course Name" />
-                <Entry x:Name="NewCourse_Name" Placeholder="Course Name" />
+            <ScrollView>
+                <StackLayout VerticalOptions="StartAndExpand">
+                    <StackLayout Margin="10">
+                        <Label Text="Course Name" />
+                        <Entry x:Name="NewCourse_Name" Placeholder="Course Name" />
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Label Text="Start Date" />
-                        <DatePicker x:Name="NewCourse_StartDate" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Start Date" />
+                                <DatePicker x:Name="NewCourse_StartDate" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Anticipated End Date" />
+                                <DatePicker x:Name="NewCourse_EndDate" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <Label Text="Course Status" />
+                        <Picker x:Name="NewCourse_Status" />
+
+                        <Frame CornerRadius="10" BorderColor="{AppThemeBinding Dark=White, Light=Black}">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Instructor" FontSize="Medium" TextColor="{AppThemeBinding Dark=White, Light=Black}" TextDecorations="Underline" />
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                        <Label Text="Name" TextColor="{AppThemeBinding Dark=White, Light=Black}" />
+                                        <Entry x:Name="NewCourse_InstructorName" Placeholder="Name" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                        <Label Text="Phone" TextColor="{AppThemeBinding Dark=White, Light=Black}" />
+                                        <Entry x:Name="NewCourse_InstructorPhone" Placeholder="Phone" />
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                    <Label Text="Email Address" TextColor="{AppThemeBinding Dark=White, Light=Black}" />
+                                    <Entry x:Name="NewCourse_InstructorEmail" Placeholder="Email Address" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame CornerRadius="10" BorderColor="{AppThemeBinding Dark=White, Light=Black}">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Notes" FontSize="Medium" TextColor="{AppThemeBinding Dark=White, Light=Black}" TextDecorations="Underline" />
+                                <Editor x:Name="NewCourse_Notes" AutoSize="TextChanges" HeightRequest="100" />
+                            </StackLayout>
+                        </Frame>
                     </StackLayout>
 
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <Label Text="Anticipated End Date" />
-                        <DatePicker x:Name="NewCourse_EndDate" />
-                    </StackLayout>
-                </StackLayout>
-
-                <Picker x:Name="NewCourse_Status" />
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
-                    <StackLayout Orientation="Horizontal">
-                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-                            <ImageButton BackgroundColor="Transparent" Clicked="SaveCourse_Clicked">
-                                <ImageButton.Source>
-                                    <FontImageSource
-                                        FontFamily="MaterialIcons"
-                                        Glyph="{x:Static local:IconFont.Check_circle}"
-                                        Color="{AppThemeBinding Dark=White, Light=Black}"
-                                        Size="30"
-                                    />
-                                </ImageButton.Source>
-                            </ImageButton>
-                            <Label Text="Save" TextColor="Black" FontSize="16">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="SaveCourse_Clicked" />
-                                </Label.GestureRecognizers>
-                            </Label>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                            <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                        <ImageButton BackgroundColor="Transparent" Clicked="SaveCourse_Clicked">
+                                            <ImageButton.Source>
+                                                <FontImageSource
+                                                    FontFamily="MaterialIcons"
+                                                    Glyph="{x:Static local:IconFont.Check_circle}"
+                                                    Color="{AppThemeBinding Dark=White, Light=Black}"
+                                                    Size="30"
+                                                />
+                                            </ImageButton.Source>
+                                        </ImageButton>
+                                        <Label Text="Save" TextColor="Black" FontSize="16">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="SaveCourse_Clicked" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
                         </StackLayout>
                     </StackLayout>
-                </Frame>
-            </StackLayout>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

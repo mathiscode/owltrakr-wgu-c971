@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\logo.png" />
     <None Remove="Resources\logo48.png" />
     <None Remove="Resources\MaterialIcons-Regular.ttf" />
@@ -35,7 +41,6 @@
 
   <ItemGroup>
     <Folder Include="Components\" />
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>

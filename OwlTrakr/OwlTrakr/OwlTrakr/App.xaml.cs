@@ -18,6 +18,7 @@ namespace OwlTrakr
         private void Startup()
         {
             Data.connect();
+            _ = Data.FetchTerms();
         }
 
         protected override void OnStart()

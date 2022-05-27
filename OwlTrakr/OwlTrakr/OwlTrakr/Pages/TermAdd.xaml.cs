@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OwlTrakr.ViewModels;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -34,6 +35,9 @@ namespace OwlTrakr.Pages
             };
 
             Data.NewTerm(newTerm);
+            TermListViewModel vm = (TermListViewModel)this.BindingContext;
+            //vm.Terms.Add(newTerm);
+            vm.Fetch();
             Navigation.PopAsync();
         }
     }
