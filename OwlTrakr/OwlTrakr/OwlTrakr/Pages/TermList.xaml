@@ -5,9 +5,9 @@
              xmlns:viewModels="clr-namespace:OwlTrakr.ViewModels"
              x:Class="OwlTrakr.TermList">
 
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewModels:TermListViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" VerticalOptions="Start">

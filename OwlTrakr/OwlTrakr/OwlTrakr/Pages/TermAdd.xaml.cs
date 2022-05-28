@@ -12,7 +12,7 @@ namespace OwlTrakr.Pages
         public TermAdd()
         {
             InitializeComponent();
-            BindingContext = new ViewModels.TermListViewModel();
+            BindingContext = TermListViewModel.instance;
 
             Func<Task<bool>> startup = async () =>
             {
@@ -34,10 +34,8 @@ namespace OwlTrakr.Pages
                 End   = ((DatePicker)this.FindByName("NewTerm_EndDate")).Date
             };
 
-            Data.NewTerm(newTerm);
-            TermListViewModel vm = (TermListViewModel)this.BindingContext;
-            //vm.Terms.Add(newTerm);
-            vm.Fetch();
+            _ = Data.NewTerm(newTerm);
+            TermListViewModel.instance.Terms.Add(newTerm);
             Navigation.PopAsync();
         }
     }

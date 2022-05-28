@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OwlTrakr.ViewModels;
+using System;
 using Xamarin.Forms;
 
 namespace OwlTrakr
@@ -13,7 +14,12 @@ namespace OwlTrakr
             InitializeComponent();
             termListView = (ListView)this.FindByName("TermListView");
             //termListEmptyLabel = (Label)this.FindByName("TermListEmptyLabel");
-            Data.FetchTerms();
+            Startup();
+        }
+
+        public async void Startup()
+        {
+            termListView.BindingContext = await TermListViewModel.Create();
         }
 
         private void NewTerm_Clicked(object sender, EventArgs e)

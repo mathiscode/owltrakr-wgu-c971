@@ -7,19 +7,19 @@ namespace OwlTrakr.ViewModels
 {
     class TermListViewModel : BaseViewModel
     {
+        ObservableCollection<Term> _terms;
         public static TermListViewModel instance;
-        ObservableCollection<Term> _terms = null;
 
-        public TermListViewModel()
+        public static async Task<TermListViewModel> Create()
         {
-            instance = this;
-            if (_terms === null) Terms = 
+            ObservableCollection<Term> terms = await Data.FetchTerms();
+            return new TermListViewModel(terms);
         }
 
-        async public void Fetch()
+        public TermListViewModel(ObservableCollection<Term> terms)
         {
-            Terms = await Data.FetchTerms();
-            OnPropertyChanged();
+            instance = this;
+            Terms = terms;
         }
 
         public ObservableCollection<Term> Terms
@@ -29,7 +29,6 @@ namespace OwlTrakr.ViewModels
             {
                 SetValue(ref _terms, value);
                 OnPropertyChanged();
-                //Fetch();
             }
         }
     }

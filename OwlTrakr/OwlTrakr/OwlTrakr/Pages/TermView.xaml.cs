@@ -34,12 +34,15 @@ namespace OwlTrakr.Pages
             Term.End = ((DatePicker)this.FindByName("EditTerm_EndDate")).Date;
 
             Data.UpdateTerm(Term);
+            int oldIndex = TermListViewModel.instance.Terms.IndexOf(Term);
+            TermListViewModel.instance.Terms[oldIndex] = Term;
             Navigation.PopAsync();
         }
 
         private void DeleteTerm_Clicked(object sender, EventArgs e)
         {
             Data.DeleteTerm(Term);
+            TermListViewModel.instance.Terms.Remove(Term);
             Navigation.PopAsync();
         }
 
