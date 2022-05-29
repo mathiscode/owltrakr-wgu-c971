@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using OwlTrakr.Models;
 
 namespace OwlTrakr.ViewModels
 {
@@ -20,6 +21,11 @@ namespace OwlTrakr.ViewModels
         {
             instance = this;
             Terms = terms;
+        }
+
+        async public void RefreshTerms()
+        {
+            Terms = await Data.FetchTerms();
         }
 
         public ObservableCollection<Term> Terms

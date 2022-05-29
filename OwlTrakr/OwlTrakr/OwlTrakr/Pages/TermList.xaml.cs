@@ -1,23 +1,22 @@
-﻿using OwlTrakr.ViewModels;
+﻿using OwlTrakr.Models;
+using OwlTrakr.ViewModels;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace OwlTrakr
 {
     public partial class TermList : ContentPage
     {
-        public static ListView termListView = null;
-        //public static Label termListEmptyLabel = null;
+        public static ListView termListView;
 
         public TermList()
         {
             InitializeComponent();
-            termListView = (ListView)this.FindByName("TermListView");
-            //termListEmptyLabel = (Label)this.FindByName("TermListEmptyLabel");
-            Startup();
+            termListView = (ListView)FindByName("TermListView");
         }
 
-        public async void Startup()
+        async public static Task Startup()
         {
             termListView.BindingContext = await TermListViewModel.Create();
         }
@@ -35,6 +34,11 @@ namespace OwlTrakr
                 Navigation.PushAsync(new Pages.TermView(term));
                 termListView.SelectedItem = null;
             }
+        }
+
+        private void Show_AboutInfo(object sender, EventArgs e)
+        {
+            DisplayAlert("OwlTrakr", "By Jamey Mathis, for WGU C971", "OK");
         }
     }
 }

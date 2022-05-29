@@ -17,5 +17,11 @@ namespace OwlTrakr.Models
         public string InstructorPhone { get; set; }
         public string InstructorEmail { get; set; }
         public bool NotificationsEnabled { get; set; }
+        public string Notes { get; set; }
+
+        public string DateRange
+        {
+            get { return Start.ToString("d") + " - " + End.ToString("d"); }
+        }
     }
 }

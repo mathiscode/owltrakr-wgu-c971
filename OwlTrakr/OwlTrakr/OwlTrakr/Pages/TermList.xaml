@@ -2,16 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:OwlTrakr"
-             xmlns:viewModels="clr-namespace:OwlTrakr.ViewModels"
              x:Class="OwlTrakr.TermList">
-
-    <!--<ContentPage.BindingContext>
-        <viewModels:TermListViewModel />
-    </ContentPage.BindingContext>-->
 
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" VerticalOptions="Start">
-            <Label Text="{x:Static local:IconFont.School}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="White" FontSize="40" Margin="0, 0, 10, 0" />
+            <Label Text="{x:Static local:IconFont.School}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="White" FontSize="40" Margin="0, 0, 10, 0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Show_AboutInfo" />
+                </Label.GestureRecognizers>
+            </Label>
             <Label Text="OwlTrakr" HorizontalTextAlignment="Left" TextColor="White" FontSize="30"/>
         </StackLayout>
     </NavigationPage.TitleView>
@@ -25,7 +24,6 @@
             </Frame>
 
             <StackLayout VerticalOptions="StartAndExpand" Margin="10">
-                <!--<Label x:Name="TermListEmptyLabel" Text="No terms" HorizontalOptions="Center" FontSize="Large" />-->
                 <ListView x:Name="TermListView" ItemsSource="{Binding Terms}" ItemSelected="Term_Selected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -45,7 +43,7 @@
                                     <FontImageSource
                                         FontFamily="MaterialIcons"
                                         Glyph="{x:Static local:IconFont.Add}"
-                                        Color="{AppThemeBinding Dark=White, Light=Black}"
+                                        Color="Black"
                                         Size="30"
                                     />
                                 </ImageButton.Source>

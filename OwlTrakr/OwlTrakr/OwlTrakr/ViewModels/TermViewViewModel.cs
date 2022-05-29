@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using OwlTrakr.Models;
 
 namespace OwlTrakr.ViewModels
@@ -9,36 +10,44 @@ namespace OwlTrakr.ViewModels
         public Term _term;
         public int Id { get; set; }
         public string Title { get; set; }
+        public string PageTitle { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public string DateRange { get; set; }
-        public ObservableCollection<Course> Courses { get; set; }
+        public ObservableCollection<Course> _courses;
+        public static TermViewViewModel instance;
 
-        public Term Term
+        public ObservableCollection<Course> Courses
         {
-            get { return _term; }
+            get { return _courses; }
             set
             {
-                SetValue(ref _term, value);
+                SetValue(ref _courses, value);
                 OnPropertyChanged();
             }
         }
 
-        public TermViewViewModel(){}
+        public static async Task<TermViewViewModel> Create(int termId)
+        {
+            Term term = await Data.FetchTerm(termId);
+            ObservableCollection<Course> courses = await Data.FetchCourses(termId);
+            instance = new TermViewViewModel(term, courses);
+            return instance;
+        }
 
-        public TermViewViewModel(Term term)
+        public TermViewViewModel(Term term, ObservableCollection<Course> courses)
         {
             Id = term.Id;
             Title = term.Title;
             Start = term.Start;
             End = term.End;
             DateRange = term.DateRange;
+            PageTitle = "Term: " + term.Title;
             _term = term;
-
-            FetchCourses();
+            _courses = courses;
         }
 
-        async public void FetchCourses()
+        async public void RefreshCourses()
         {
             Courses = await Data.FetchCourses(Id);
         }

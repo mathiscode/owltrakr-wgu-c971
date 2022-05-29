@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:OwlTrakr"
+             x:Class="OwlTrakr.Pages.AssessmentView">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label Text="{x:Static local:IconFont.School}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="White" FontSize="40" Margin="0, 0, 10, 0" />
+            <Label Text="OwlTrakr" HorizontalTextAlignment="Left" TextColor="White" FontSize="30"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#3740ed" Padding="14" CornerRadius="0">
+                <StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="End">
+                    <Label Text="{Binding PageTitle}" HorizontalTextAlignment="Right" TextColor="White" FontSize="20"/>
+                    <Label Text="{Binding _assessment.DateRange}" HorizontalTextAlignment="Right" TextColor="Silver" FontSize="15"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout VerticalOptions="StartAndExpand">
+                <ScrollView>
+                    <StackLayout Margin="10">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                            <Label Text="{x:Static local:IconFont.Notifications}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="{AppThemeBinding Dark=White, Light=Blue}" FontSize="24" />
+                            <Switch x:Name="EditAssessment_NotificationsEnabled" IsToggled="{Binding _assessment.NotificationsEnabled}" ThumbColor="RoyalBlue" OnColor="PaleGreen" />
+                        </StackLayout>
+
+                        <Label Text="Assessment Title" />
+                        <Entry x:Name="EditAssessment_Title" Placeholder="Assessment Title" Text="{Binding _assessment.Title}"/>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Start Date" />
+                                <DatePicker x:Name="EditAssessment_StartDate" Date="{Binding _assessment.Start}" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Anticipated End Date" />
+                                <DatePicker x:Name="EditAssessment_EndDate" Date="{Binding _assessment.End}" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <Label Text="Assessment Type" />
+                        <Picker x:Name="EditAssessment_Type" />
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                    <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                <ImageButton BackgroundColor="Transparent" Clicked="SaveAssessment_Clicked">
+                                    <ImageButton.Source>
+                                        <FontImageSource
+                                                    FontFamily="MaterialIcons"
+                                                    Glyph="{x:Static local:IconFont.Check_circle}"
+                                                    Color="Black"
+                                                    Size="30"
+                                                />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                                <Label Text="Save Assessment" TextColor="Black" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SaveAssessment_Clicked" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                <ImageButton BackgroundColor="Transparent" Clicked="DeleteAssessment_Clicked">
+                                    <ImageButton.Source>
+                                        <FontImageSource
+                                                    FontFamily="MaterialIcons"
+                                                    Glyph="{x:Static local:IconFont.Delete}"
+                                                    Color="Black"
+                                                    Size="30"
+                                                />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                                <Label Text="Delete Assessment" TextColor="Black" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="DeleteAssessment_Clicked" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

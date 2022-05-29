@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:OwlTrakr"
+             x:Class="OwlTrakr.Pages.AssessmentAdd">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label Text="{x:Static local:IconFont.School}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="White" FontSize="40" Margin="0, 0, 10, 0" />
+            <Label Text="OwlTrakr" HorizontalTextAlignment="Left" TextColor="White" FontSize="30"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#3740ed" Padding="14" CornerRadius="0">
+                <StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="End">
+                    <Label Text="Add New Assessment" HorizontalTextAlignment="Right" TextColor="White" FontSize="20"/>
+                    <Label Text="{Binding PageSubtitle}" HorizontalTextAlignment="Right" TextColor="Silver" FontSize="15"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout VerticalOptions="StartAndExpand">
+                <ScrollView>
+                    <StackLayout Margin="10">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                            <Label Text="{x:Static local:IconFont.Notifications}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="Blue" FontSize="24" />
+                            <Switch x:Name="NewAssessment_NotificationsEnabled" IsToggled="True" ThumbColor="RoyalBlue" OnColor="PaleGreen" />
+                        </StackLayout>
+
+                        <Label Text="Assessment Title" />
+                        <Entry x:Name="NewAssessment_Title" Placeholder="Assessment Title" />
+
+                        <Label Text="Assessment Type" />
+                        <Picker x:Name="NewAssessment_Type" />
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Start Date" />
+                                <DatePicker x:Name="NewAssessment_StartDate" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Anticipated End Date" />
+                                <DatePicker x:Name="NewAssessment_EndDate" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                    <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                <ImageButton BackgroundColor="Transparent" Clicked="SaveAssessment_Clicked">
+                                    <ImageButton.Source>
+                                        <FontImageSource
+                                                    FontFamily="MaterialIcons"
+                                                    Glyph="{x:Static local:IconFont.Check_circle}"
+                                                    Color="Black"
+                                                    Size="30"
+                                                />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                                <Label Text="Save" TextColor="Black" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SaveAssessment_Clicked" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

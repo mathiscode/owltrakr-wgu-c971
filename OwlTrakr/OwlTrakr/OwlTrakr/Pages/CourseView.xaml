@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:OwlTrakr"
+             x:Class="OwlTrakr.Pages.CourseView">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label Text="{x:Static local:IconFont.School}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="White" FontSize="40" Margin="0, 0, 10, 0" />
+            <Label Text="OwlTrakr" HorizontalTextAlignment="Left" TextColor="White" FontSize="30"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#3740ed" Padding="14" CornerRadius="0">
+                <StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="End">
+                    <Label Text="{Binding PageTitle}" HorizontalTextAlignment="Right" TextColor="White" FontSize="20"/>
+                    <Label Text="{Binding _course.DateRange}" HorizontalTextAlignment="Right" TextColor="Silver" FontSize="15"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout VerticalOptions="StartAndExpand">
+                <ScrollView>
+                    <StackLayout Margin="10">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                            <Label Text="{x:Static local:IconFont.Notifications}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="{AppThemeBinding Dark=White, Light=Blue}" FontSize="24" />
+                            <Switch x:Name="EditCourse_NotificationsEnabled" IsToggled="{Binding _course.NotificationsEnabled}" ThumbColor="RoyalBlue" OnColor="PaleGreen" />
+                        </StackLayout>
+
+                        <Label Text="Course Title" />
+                        <Entry x:Name="EditCourse_Title" Placeholder="Course Title" Text="{Binding _course.Title}"/>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Start Date" />
+                                <DatePicker x:Name="EditCourse_StartDate" Date="{Binding _course.Start}" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Anticipated End Date" />
+                                <DatePicker x:Name="EditCourse_EndDate" Date="{Binding _course.End}" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <Label Text="Course Status" />
+                        <Picker x:Name="EditCourse_Status" TextColor="{AppThemeBinding Dark=White, Light=Black}" TitleColor="Black" />
+
+                        <Frame CornerRadius="10" BorderColor="{AppThemeBinding Dark=White, Light=Black}" BackgroundColor="Transparent">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Label Text="Instructor" FontSize="Medium" TextColor="{AppThemeBinding Dark=White, Light=Black}" TextDecorations="Underline" />
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                        <Label Text="Name" TextColor="{AppThemeBinding Dark=White, Light=Black}" />
+                                        <Entry x:Name="EditCourse_InstructorName" Placeholder="Name" Text="{Binding _course.InstructorName}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                        <Label Text="Phone" TextColor="{AppThemeBinding Dark=White, Light=Black}" />
+                                        <Entry x:Name="EditCourse_InstructorPhone" Placeholder="Phone" Text="{Binding _course.InstructorPhone}" />
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                    <Label Text="Email Address" TextColor="{AppThemeBinding Dark=White, Light=Black}" />
+                                    <Entry x:Name="EditCourse_InstructorEmail" Placeholder="Email Address" Text="{Binding _course.InstructorEmail}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame CornerRadius="10" BorderColor="{AppThemeBinding Dark=White, Light=Black}" BackgroundColor="Transparent">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label Text="Notes" FontSize="Medium" TextColor="{AppThemeBinding Dark=White, Light=Black}" TextDecorations="Underline" />
+                                    <Label Text="{x:Static local:IconFont.Share}" FontFamily="MaterialIcons" HorizontalOptions="EndAndExpand" TextColor="{AppThemeBinding Dark=White, Light=DarkBlue}" FontSize="24">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ShareNotes_Clicked" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
+                                
+                                <Editor x:Name="EditCourse_Notes" AutoSize="TextChanges" HeightRequest="100" Text="{Binding _course.Notes}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                    <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                <ImageButton BackgroundColor="Transparent" Clicked="ViewAssessments_Clicked">
+                                    <ImageButton.Source>
+                                        <FontImageSource
+                                                    FontFamily="MaterialIcons"
+                                                    Glyph="{x:Static local:IconFont.Book}"
+                                                    Color="Black"
+                                                    Size="30"
+                                                />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                                <Label Text="Assessments" TextColor="Black" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ViewAssessments_Clicked" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                <ImageButton BackgroundColor="Transparent" Clicked="SaveCourse_Clicked">
+                                    <ImageButton.Source>
+                                        <FontImageSource
+                                                    FontFamily="MaterialIcons"
+                                                    Glyph="{x:Static local:IconFont.Check_circle}"
+                                                    Color="Black"
+                                                    Size="30"
+                                                />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                                <Label Text="Save" TextColor="Black" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SaveCourse_Clicked" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                <ImageButton BackgroundColor="Transparent" Clicked="DeleteCourse_Clicked">
+                                    <ImageButton.Source>
+                                        <FontImageSource
+                                                    FontFamily="MaterialIcons"
+                                                    Glyph="{x:Static local:IconFont.Delete}"
+                                                    Color="Black"
+                                                    Size="30"
+                                                />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                                <Label Text="Delete Course" TextColor="Black" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="DeleteCourse_Clicked" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

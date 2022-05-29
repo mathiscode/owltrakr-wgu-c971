@@ -20,11 +20,16 @@
                 </StackLayout>
             </Frame>
 
-            <ScrollView>
-                <StackLayout VerticalOptions="StartAndExpand">
+            <StackLayout VerticalOptions="StartAndExpand">
+                <ScrollView>
                     <StackLayout Margin="10">
-                        <Label Text="Course Name" />
-                        <Entry x:Name="NewCourse_Name" Placeholder="Course Name" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                            <Label Text="{x:Static local:IconFont.Notifications}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="{AppThemeBinding Dark=White, Light=Blue}" FontSize="24" />
+                            <Switch x:Name="NewCourse_NotificationsEnabled" IsToggled="True" ThumbColor="RoyalBlue" OnColor="PaleGreen" />
+                        </StackLayout>
+
+                        <Label Text="Course Title" />
+                        <Entry x:Name="NewCourse_Title" Placeholder="Course Title" />
 
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
@@ -41,7 +46,7 @@
                         <Label Text="Course Status" />
                         <Picker x:Name="NewCourse_Status" />
 
-                        <Frame CornerRadius="10" BorderColor="{AppThemeBinding Dark=White, Light=Black}">
+                        <Frame CornerRadius="10" BorderColor="{AppThemeBinding Dark=White, Light=Black}" BackgroundColor="Transparent">
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                 <Label Text="Instructor" FontSize="Medium" TextColor="{AppThemeBinding Dark=White, Light=Black}" TextDecorations="Underline" />
                                 <StackLayout Orientation="Horizontal">
@@ -63,41 +68,41 @@
                             </StackLayout>
                         </Frame>
 
-                        <Frame CornerRadius="10" BorderColor="{AppThemeBinding Dark=White, Light=Black}">
+                        <Frame CornerRadius="10" BorderColor="{AppThemeBinding Dark=White, Light=Black}" BackgroundColor="Transparent">
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                 <Label Text="Notes" FontSize="Medium" TextColor="{AppThemeBinding Dark=White, Light=Black}" TextDecorations="Underline" />
                                 <Editor x:Name="NewCourse_Notes" AutoSize="TextChanges" HeightRequest="100" />
                             </StackLayout>
                         </Frame>
                     </StackLayout>
+                </ScrollView>
+            </StackLayout>
 
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                            <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
-                                <StackLayout Orientation="Horizontal">
-                                    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-                                        <ImageButton BackgroundColor="Transparent" Clicked="SaveCourse_Clicked">
-                                            <ImageButton.Source>
-                                                <FontImageSource
-                                                    FontFamily="MaterialIcons"
-                                                    Glyph="{x:Static local:IconFont.Check_circle}"
-                                                    Color="{AppThemeBinding Dark=White, Light=Black}"
-                                                    Size="30"
-                                                />
-                                            </ImageButton.Source>
-                                        </ImageButton>
-                                        <Label Text="Save" TextColor="Black" FontSize="16">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="SaveCourse_Clicked" />
-                                            </Label.GestureRecognizers>
-                                        </Label>
-                                    </StackLayout>
-                                </StackLayout>
-                            </Frame>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                    <Frame BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Padding="14" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                <ImageButton BackgroundColor="Transparent" Clicked="SaveCourse_Clicked">
+                                    <ImageButton.Source>
+                                        <FontImageSource
+                                                FontFamily="MaterialIcons"
+                                                Glyph="{x:Static local:IconFont.Check_circle}"
+                                                Color="Black"
+                                                Size="30"
+                                            />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                                <Label Text="Save" TextColor="Black" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SaveCourse_Clicked" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
+                    </Frame>
                 </StackLayout>
-            </ScrollView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

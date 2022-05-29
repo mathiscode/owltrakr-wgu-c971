@@ -12,5 +12,6 @@
 		public const string Arrow_back = "\ue5c4";
 		public const string Share = "\ue80d";
 		public const string School = "\ue80c";
+		public const string Book = "\uea19";
 	}
 }

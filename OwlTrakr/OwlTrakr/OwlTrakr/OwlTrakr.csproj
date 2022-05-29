@@ -17,14 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Resources\logo.png" />
-    <None Remove="Resources\logo48.png" />
     <None Remove="Resources\MaterialIcons-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\logo.png" />
-    <EmbeddedResource Include="Resources\logo48.png" />
     <EmbeddedResource Include="Resources\MaterialIcons-Regular.ttf" />
   </ItemGroup>
 
@@ -36,21 +32,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Components\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Compile Update="Pages\AssessmentList.xaml.cs">
+      <DependentUpon>AssessmentList.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\TermList.xaml.cs">
       <DependentUpon>TermList.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Pages\AssessmentAdd.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\AssessmentList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\AssessmentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\CourseAdd.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\CourseView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\TermAdd.xaml">

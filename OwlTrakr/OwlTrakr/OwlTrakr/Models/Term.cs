@@ -1,7 +1,7 @@
 ﻿using SQLite;
 using System;
 
-namespace OwlTrakr
+namespace OwlTrakr.Models
 {
     public class Term
     {
@@ -10,6 +10,7 @@ namespace OwlTrakr
         public string Title { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
+        public bool NotificationsEnabled { get; set; }
 
         public string DateRange {
             get { return Start.ToString("d") + " - " + End.ToString("d"); }

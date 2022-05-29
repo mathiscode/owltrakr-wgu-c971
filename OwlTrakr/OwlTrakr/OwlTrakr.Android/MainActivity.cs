@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using AndroidX.AppCompat.App;
 
 namespace OwlTrakr.Droid
 {
@@ -16,6 +17,9 @@ namespace OwlTrakr.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            //AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
+            //base.OnCreate(savedInstanceState);
 
             base.OnCreate(savedInstanceState);
 

@@ -20,6 +20,11 @@
             </Frame>
 
             <StackLayout VerticalOptions="StartAndExpand" Margin="10">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                    <Label Text="{x:Static local:IconFont.Notifications}" FontFamily="MaterialIcons" HorizontalTextAlignment="Left" TextColor="{AppThemeBinding Dark=White, Light=Blue}" FontSize="24" />
+                    <Switch x:Name="NewTerm_NotificationsEnabled" IsToggled="True" ThumbColor="RoyalBlue" OnColor="PaleGreen" />
+                </StackLayout>
+
                 <Label Text="Term Name" />
                 <Entry x:Name="NewTerm_Title" Placeholder="Term Name" />
 
@@ -45,7 +50,7 @@
                                     <FontImageSource
                                         FontFamily="MaterialIcons"
                                         Glyph="{x:Static local:IconFont.Check_circle}"
-                                        Color="{AppThemeBinding Dark=White, Light=Black}"
+                                        Color="Black"
                                         Size="30"
                                     />
                                 </ImageButton.Source>

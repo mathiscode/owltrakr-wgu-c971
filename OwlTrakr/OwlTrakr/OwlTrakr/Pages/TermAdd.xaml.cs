@@ -1,4 +1,5 @@
-﻿using OwlTrakr.ViewModels;
+﻿using OwlTrakr.Models;
+using OwlTrakr.ViewModels;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -11,7 +12,6 @@ namespace OwlTrakr.Pages
     {
         public TermAdd()
         {
-            InitializeComponent();
             BindingContext = TermListViewModel.instance;
 
             Func<Task<bool>> startup = async () =>
@@ -23,20 +23,28 @@ namespace OwlTrakr.Pages
             };
 
             startup();
+            InitializeComponent();
         }
 
-        private void SaveTerm_Clicked(object sender, EventArgs e)
+        async private void SaveTerm_Clicked(object sender, EventArgs e)
         {
             Term newTerm = new Term()
             {
                 Title = ((Entry)this.FindByName("NewTerm_Title")).Text,
                 Start = ((DatePicker)this.FindByName("NewTerm_StartDate")).Date,
-                End   = ((DatePicker)this.FindByName("NewTerm_EndDate")).Date
+                End   = ((DatePicker)this.FindByName("NewTerm_EndDate")).Date,
+                NotificationsEnabled = ((Switch)FindByName("NewTerm_NotificationsEnabled")).IsToggled
             };
 
-            _ = Data.NewTerm(newTerm);
+            if (String.IsNullOrEmpty(newTerm.Title))
+            {
+                await DisplayAlert("Error", "You must provide the term title", "OK");
+                return;
+            }
+
+            await Data.NewTerm(newTerm);
             TermListViewModel.instance.Terms.Add(newTerm);
-            Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
     }
 }

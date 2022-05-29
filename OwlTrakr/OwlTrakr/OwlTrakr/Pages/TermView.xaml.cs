@@ -11,49 +11,56 @@ namespace OwlTrakr.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TermView : ContentPage
     {
-        public Term Term;
+        private ObservableCollection<Course> Courses { get; set; }
 
         public TermView(Term term)
         {
-            Term = term;
-            BindingContext = new TermViewViewModel(term);
             InitializeComponent();
+            Startup(term);
         }
 
-        public async Task<Term> Fetch(int termId)
+        async private void Startup(Term term)
         {
-            Term = await Data.FetchTerm(termId);
-            BindingContext = new TermViewViewModel(Term);
-            return Term;
+
+            BindingContext = await TermViewViewModel.Create(term.Id);
+            ((Switch)EditTerm_NotificationsEnabled).IsToggled = term.NotificationsEnabled;
         }
 
-        private void SaveTerm_Clicked(object sender, EventArgs e)
+        async private void SaveTerm_Clicked(object sender, EventArgs e)
         {
-            Term.Title = ((Entry)this.FindByName("EditTerm_Title")).Text;
-            Term.Start = ((DatePicker)this.FindByName("EditTerm_StartDate")).Date;
-            Term.End = ((DatePicker)this.FindByName("EditTerm_EndDate")).Date;
+            Term term = TermViewViewModel.instance._term;
+            term.Title = ((Entry)this.FindByName("EditTerm_Title")).Text;
+            term.Start = ((DatePicker)this.FindByName("EditTerm_StartDate")).Date;
+            term.End = ((DatePicker)this.FindByName("EditTerm_EndDate")).Date;
+            term.NotificationsEnabled = ((Switch)FindByName("EditTerm_NotificationsEnabled")).IsToggled;
 
-            Data.UpdateTerm(Term);
-            int oldIndex = TermListViewModel.instance.Terms.IndexOf(Term);
-            TermListViewModel.instance.Terms[oldIndex] = Term;
-            Navigation.PopAsync();
+            await Data.UpdateTerm(term);
+            TermListViewModel.instance.RefreshTerms();
+            await Navigation.PopAsync();
         }
 
-        private void DeleteTerm_Clicked(object sender, EventArgs e)
+        async private void DeleteTerm_Clicked(object sender, EventArgs e)
         {
-            Data.DeleteTerm(Term);
-            TermListViewModel.instance.Terms.Remove(Term);
-            Navigation.PopAsync();
-        }
-
-        private void ViewCourse_Clicked(object sender, EventArgs e)
-        {
-
+            await Data.DeleteTerm(TermViewViewModel.instance._term);
+            TermListViewModel.instance.RefreshTerms();
+            await Navigation.PopAsync();
         }
 
         private void AddCourse_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Pages.CourseAdd(Term));
+            Term term = TermViewViewModel.instance._term;
+            Navigation.PushAsync(new Pages.CourseAdd(term));
+        }
+
+        private void Courses_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+            {
+                Term term = TermViewViewModel.instance._term;
+                Course course = (Course)e.SelectedItem;
+                Navigation.PushAsync(new Pages.CourseView(term, course));
+                ((ListView)FindByName("Courses_ListView")).SelectedItem = null;
+            }
         }
     }
 }
