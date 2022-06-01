@@ -34,7 +34,7 @@
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                 <Label Text="Start Date" />
-                                <DatePicker x:Name="EditCourse_StartDate" Date="{Binding _course.Start}" />
+                                <DatePicker x:Name="EditCourse_StartDate" Date="{Binding _course.Start}" DateSelected="EditCourse_StartDate_DateSelected" />
                             </StackLayout>
 
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">

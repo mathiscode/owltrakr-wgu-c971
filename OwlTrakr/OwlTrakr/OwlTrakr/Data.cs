@@ -83,6 +83,16 @@ namespace OwlTrakr
             return await db.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Term");
         }
 
+        public static async Task<int> CountCourses(Term term)
+        {
+            return await db.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Course WHERE TermId = " + term.Id);
+        }
+
+        public static async Task<int> CountAssessments(Course course)
+        {
+            return await db.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Assessment WHERE CourseId = " + course.Id);
+        }
+
 
         public static async Task<ObservableCollection<Term>> FetchTerms()
         {

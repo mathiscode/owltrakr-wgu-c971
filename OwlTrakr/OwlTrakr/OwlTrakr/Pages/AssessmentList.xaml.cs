@@ -2,6 +2,7 @@
 using OwlTrakr.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,10 +31,18 @@ namespace OwlTrakr.Pages
             BindingContext = viewModel;
         }
 
-        private void NewAssessment_Clicked(object sender, EventArgs e)
+        async private void NewAssessment_Clicked(object sender, EventArgs e)
         {
             Term term = ((AssessmentListViewModel)BindingContext)._term;
             Course course = ((AssessmentListViewModel)BindingContext)._course;
+
+            int assessmentCount = await Data.CountAssessments(course);
+            if (assessmentCount >= 2)
+            {
+                await DisplayAlert("Error", "A course may have no more than 2 assessments", "OK");
+                return;
+            }
+
             Navigation.PushAsync(new Pages.AssessmentAdd(term, course));
         }
 

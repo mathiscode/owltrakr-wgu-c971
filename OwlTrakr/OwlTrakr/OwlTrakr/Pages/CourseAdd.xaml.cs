@@ -51,6 +51,12 @@ namespace OwlTrakr.Pages
                 return;
             }
 
+            if (course.Start > course.End)
+            {
+                await DisplayAlert("Error", "Start date must be before end date", "OK");
+                return;
+            }
+
             if (String.IsNullOrEmpty(course.InstructorName) || String.IsNullOrEmpty(course.InstructorPhone) || String.IsNullOrEmpty(course.InstructorEmail))
             {
                 await DisplayAlert("Error", "You must provide all instructor details", "OK");
@@ -60,6 +66,11 @@ namespace OwlTrakr.Pages
             await Data.NewCourse(course);
             TermViewViewModel.instance._courses.Add(course);
             await Navigation.PopAsync();
+        }
+
+        private void NewCourse_StartDate_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            ((DatePicker)FindByName("NewCourse_EndDate")).MinimumDate = e.NewDate;
         }
     }
 }

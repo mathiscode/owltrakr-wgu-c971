@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\OwlTrakr.iOS.csproj": {}
+    "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\OwlTrakr.iOS.csproj": {}
   },
   "projects": {
-    "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\OwlTrakr.iOS.csproj": {
+    "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\OwlTrakr.iOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\OwlTrakr.iOS.csproj",
+        "projectUniqueName": "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\OwlTrakr.iOS.csproj",
         "projectName": "OwlTrakr.iOS",
-        "projectPath": "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\OwlTrakr.iOS.csproj",
+        "projectPath": "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\OwlTrakr.iOS.csproj",
         "packagesPath": "C:\\Users\\Jay\\.nuget\\packages\\",
-        "outputPath": "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\obj\\",
+        "outputPath": "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.iOS\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -32,8 +32,8 @@
         "frameworks": {
           "xamarinios10": {
             "projectReferences": {
-              "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj": {
-                "projectPath": "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj"
+              "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj": {
+                "projectPath": "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj"
               }
             }
           }
@@ -65,14 +65,14 @@
         }
       }
     },
-    "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj": {
+    "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj",
+        "projectUniqueName": "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj",
         "projectName": "OwlTrakr",
-        "projectPath": "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj",
+        "projectPath": "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr.csproj",
         "packagesPath": "C:\\Users\\Jay\\.nuget\\packages\\",
-        "outputPath": "c:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\obj\\",
+        "outputPath": "C:\\ode\\wgu\\c971\\owltrakr\\OwlTrakr\\OwlTrakr\\OwlTrakr\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

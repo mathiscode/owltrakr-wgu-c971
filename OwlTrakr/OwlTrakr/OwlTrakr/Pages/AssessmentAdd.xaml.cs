@@ -2,6 +2,8 @@
 using OwlTrakr.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -55,9 +57,27 @@ namespace OwlTrakr.Pages
                 return;
             }
 
+            if (assessment.Start > assessment.End)
+            {
+                await DisplayAlert("Error", "Start date must be before end date", "OK");
+                return;
+            }
+
+            ObservableCollection<Assessment> assessments = await Data.FetchAssessments(this._term, this._course);
+            if (assessments.Any(a => a.Type == assessment.Type))
+            {
+                await DisplayAlert("Error", "This course already contains this type of assessment", "OK");
+                return;
+            }
+
             await Data.NewAssessment(assessment);
             AssessmentListViewModel.instance.Assessments.Add(assessment);
             await Navigation.PopAsync();
+        }
+
+        private void NewAssessment_StartDate_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            ((DatePicker)FindByName("NewAssessment_EndDate")).MinimumDate = e.NewDate;
         }
     }
 }

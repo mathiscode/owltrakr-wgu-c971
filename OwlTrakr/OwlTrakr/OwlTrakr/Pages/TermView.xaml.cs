@@ -34,6 +34,12 @@ namespace OwlTrakr.Pages
             term.End = ((DatePicker)this.FindByName("EditTerm_EndDate")).Date;
             term.NotificationsEnabled = ((Switch)FindByName("EditTerm_NotificationsEnabled")).IsToggled;
 
+            if (term.Start > term.End)
+            {
+                await DisplayAlert("Error", "Start date must be before end date", "OK");
+                return;
+            }
+
             await Data.UpdateTerm(term);
             TermListViewModel.instance.RefreshTerms();
             await Navigation.PopAsync();
@@ -46,9 +52,17 @@ namespace OwlTrakr.Pages
             await Navigation.PopAsync();
         }
 
-        private void AddCourse_Clicked(object sender, EventArgs e)
+        async private void AddCourse_Clicked(object sender, EventArgs e)
         {
             Term term = TermViewViewModel.instance._term;
+
+            int courseCount = await Data.CountCourses(term);
+            if (courseCount >= 6)
+            {
+                await DisplayAlert("Error", "A term may have no more than 6 courses", "OK");
+                return;
+            }
+
             Navigation.PushAsync(new Pages.CourseAdd(term));
         }
 
@@ -61,6 +75,11 @@ namespace OwlTrakr.Pages
                 Navigation.PushAsync(new Pages.CourseView(term, course));
                 ((ListView)FindByName("Courses_ListView")).SelectedItem = null;
             }
+        }
+
+        private void EditTerm_StartDate_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            ((DatePicker)FindByName("EditTerm_EndDate")).MinimumDate = e.NewDate;
         }
     }
 }

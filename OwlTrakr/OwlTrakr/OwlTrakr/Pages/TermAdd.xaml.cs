@@ -42,9 +42,20 @@ namespace OwlTrakr.Pages
                 return;
             }
 
+            if (newTerm.Start > newTerm.End)
+            {
+                await DisplayAlert("Error", "Start date must be before end date", "OK");
+                return;
+            }
+
             await Data.NewTerm(newTerm);
             TermListViewModel.instance.Terms.Add(newTerm);
             await Navigation.PopAsync();
+        }
+
+        private void NewTerm_StartDate_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            ((DatePicker)FindByName("NewTerm_EndDate")).MinimumDate = e.NewDate;
         }
     }
 }

@@ -37,7 +37,7 @@
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                 <Label Text="Start Date" />
-                                <DatePicker x:Name="NewAssessment_StartDate" />
+                                <DatePicker x:Name="NewAssessment_StartDate" DateSelected="NewAssessment_StartDate_DateSelected" />
                             </StackLayout>
 
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">

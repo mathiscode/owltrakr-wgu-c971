@@ -42,9 +42,15 @@ namespace OwlTrakr.Pages
             Picker type = (Picker)FindByName("EditAssessment_Type");
             _assessment.Type = (string)type.SelectedItem;
 
-            if (String.IsNullOrEmpty(_course.Title))
+            if (String.IsNullOrEmpty(_assessment.Title))
             {
                 await DisplayAlert("Error", "You must provide the assessment title", "OK");
+                return;
+            }
+
+            if (_assessment.Start > _assessment.End)
+            {
+                await DisplayAlert("Error", "Start date must be before end date", "OK");
                 return;
             }
 
@@ -58,6 +64,11 @@ namespace OwlTrakr.Pages
             await Data.DeleteAssessment(_assessment);
             AssessmentListViewModel.instance.RefreshAssessments();
             await Navigation.PopAsync();
+        }
+
+        private void EditAssessment_StartDate_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            ((DatePicker)FindByName("EditAssessment_EndDate")).MinimumDate = e.NewDate;
         }
     }
 }
