@@ -2,6 +2,7 @@
 using OwlTrakr.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,13 @@ namespace OwlTrakr.Pages
             if (_assessment.Start > _assessment.End)
             {
                 await DisplayAlert("Error", "Start date must be before end date", "OK");
+                return;
+            }
+
+            ObservableCollection<Assessment> assessments = await Data.FetchAssessments(this._term, this._course);
+            if (assessments.Any(a => a.Type == _assessment.Type && a.Id != _assessment.Id))
+            {
+                await DisplayAlert("Error", "This course already contains this type of assessment", "OK");
                 return;
             }
 
